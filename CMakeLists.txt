@@ -2,5 +2,11 @@ cmake_minimum_required(VERSION 4.1)
 project(IMS)
 
 set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_executable(IMS main.cpp)
+add_executable(IMS
+        src/main.cpp
+        src/Item.cpp
+)
+
+target_include_directories(IMS PRIVATE include)
