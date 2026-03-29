@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(IMS
         src/main.cpp
         src/Item.cpp
+        src/Electronics.cpp
 )
 
 target_include_directories(IMS PRIVATE include)
