@@ -6,7 +6,9 @@
 Grocery::Grocery(std::string itemID, std::string name, int quantity,
                  double price, std::string expirationDate)
     : Item{std::move(itemID), std::move(name), quantity, price},
-      expirationDate{std::move(expirationDate)} {}
+      expirationDate{""} {
+  setExpirationDate(std::move(expirationDate));
+}
 
 bool Grocery::isValidDate(const std::string& date) {
   // check length
