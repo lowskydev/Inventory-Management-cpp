@@ -13,3 +13,12 @@ add_executable(IMS
 )
 
 target_include_directories(IMS PRIVATE include)
+
+# Warning flags
+target_compile_options(IMS PRIVATE
+        -Wall        # all common warnings
+        -Wextra      # extra warnings beyond -Wall
+        -Wpedantic   # strict standard compliance
+        -Wshadow     # warn when variable shadows another
+        -Wconversion # warn on implicit type conversions
+)
