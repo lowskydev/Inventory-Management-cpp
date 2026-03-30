@@ -5,7 +5,9 @@
 Electronics::Electronics(std::string itemID, std::string name, int quantity,
                          double price, int warrantyMonths)
     : Item{std::move(itemID), std::move(name), quantity, price},
-      warrantyMonths{warrantyMonths} {}
+      warrantyMonths{0} {
+  setWarrantyMonths(warrantyMonths);
+}
 
 int Electronics::getWarrantyMonths() const { return warrantyMonths; }
 
