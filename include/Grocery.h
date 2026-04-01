@@ -19,7 +19,7 @@ class Grocery : public Item {
           std::string expirationDate);
   ~Grocery() override = default;
 
-  [[nodiscard]] std::string getExpirationDate() const noexcept;
+  [[nodiscard]] const std::string& getExpirationDate() const noexcept;
   void setExpirationDate(std::string newExpirationDate);
   void display() const override;
 

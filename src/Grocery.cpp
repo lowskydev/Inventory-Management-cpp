@@ -37,7 +37,7 @@ bool Grocery::isValidDate(const std::string& date) {
   return true;
 }
 
-std::string Grocery::getExpirationDate() const noexcept {
+const std::string& Grocery::getExpirationDate() const noexcept {
   return expirationDate;
 }
 
