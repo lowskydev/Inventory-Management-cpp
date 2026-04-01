@@ -8,8 +8,8 @@ Item::Item(std::string itemID, std::string name, int quantity, double price)
       quantity{quantity},
       price{price} {}
 
-std::string Item::getItemID() const noexcept { return itemID; }
-std::string Item::getName() const noexcept { return name; }
+const std::string& Item::getItemID() const noexcept { return itemID; }
+const std::string& Item::getName() const noexcept { return name; }
 double Item::getPrice() const noexcept { return price; }
 int Item::getQuantity() const noexcept { return quantity; }
 
