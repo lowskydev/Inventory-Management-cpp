@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "Exceptions.h"
+
 Electronics::Electronics(std::string itemID, std::string name, int quantity,
                          double price, int warrantyMonths)
     : Item{std::move(itemID), std::move(name), quantity, price},
@@ -9,18 +11,17 @@ Electronics::Electronics(std::string itemID, std::string name, int quantity,
   setWarrantyMonths(warrantyMonths);
 }
 
-int Electronics::getWarrantyMonths() const { return warrantyMonths; }
+int Electronics::getWarrantyMonths() const noexcept { return warrantyMonths; }
 
 void Electronics::setWarrantyMonths(int newWarrantyMonths) {
   if (newWarrantyMonths < MIN_WARRANTY_MONTHS) {
-    std::cout << "Error: Item warranty (months) smaller than "
-              << MIN_WARRANTY_MONTHS << "\n";
-    return;
+    throw InvalidValueException("Item warranty (months) smaller than " +
+                                std::to_string(MIN_WARRANTY_MONTHS));
   }
   warrantyMonths = newWarrantyMonths;
 }
 
-std::string Electronics::category() const { return "Electronics"; }
+std::string Electronics::category() const noexcept { return "Electronics"; }
 
 void Electronics::display() const {
   std::cout << "[" << category() << "] ID: " << getItemID()

@@ -16,12 +16,12 @@ class Electronics : public Item {
               int warrantyMonths);
   ~Electronics() override = default;
 
-  [[nodiscard]] int getWarrantyMonths() const;
+  [[nodiscard]] int getWarrantyMonths() const noexcept;
 
   void setWarrantyMonths(int newWarrantyMonths);
   void display() const override;
 
-  [[nodiscard]] std::string category() const override;
+  [[nodiscard]] std::string category() const noexcept override;
 
   [[nodiscard]] std::optional<std::string> findAttribute(
       const std::string& key) const override;
