@@ -20,7 +20,7 @@ class Inventory {
   Inventory(Inventory&&) = default;
   Inventory& operator=(Inventory&&) = default;
 
-  void addItem(std::shared_ptr<Item> item);
+  void addItem(std::shared_ptr<Item> newItem);
 
   void removeItem(const std::string& itemID);
   void updateQuantity(const std::string& itemID, int quantity);
