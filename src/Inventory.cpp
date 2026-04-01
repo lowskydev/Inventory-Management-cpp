@@ -39,6 +39,7 @@ void Inventory::updateQuantity(const std::string& itemID, int quantity) {
   if (it == items.end()) {
     std::cout << "Error: could not find ID \"" << itemID
               << "\" in the inventory\n";
+    return;
   }
 
   (*it)->setQuantity(quantity);
