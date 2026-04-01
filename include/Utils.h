@@ -8,6 +8,8 @@
 #include "Inventory.h"
 #include "Item.h"
 
+namespace utils {
+
 template <typename Predicate>
 std::vector<std::shared_ptr<Item>> filterItems(const Inventory& inv,
                                                Predicate pred) {
@@ -20,3 +22,5 @@ template <typename Key>
 void sortItems(Inventory& inv, Key keyFn) {
   inv.sortBy(keyFn);
 }
+
+}  // namespace utils
