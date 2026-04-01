@@ -60,7 +60,7 @@ std::shared_ptr<Item> Inventory::findMostExpensive() const {
       });
 
   if (it == items.end()) {
-    throw InventoryException("Inventory is empty");
+    throw EmptyInventoryException();
   }
 
   return *it;
