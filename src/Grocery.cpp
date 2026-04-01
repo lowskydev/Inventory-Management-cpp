@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "Exceptions.h"
+
 Grocery::Grocery(std::string itemID, std::string name, int quantity,
                  double price, std::string expirationDate)
     : Item{std::move(itemID), std::move(name), quantity, price},
@@ -35,19 +37,20 @@ bool Grocery::isValidDate(const std::string& date) {
   return true;
 }
 
-std::string Grocery::getExpirationDate() const { return expirationDate; }
+std::string Grocery::getExpirationDate() const noexcept {
+  return expirationDate;
+}
 
 void Grocery::setExpirationDate(std::string newExpirationDate) {
   if (!isValidDate(newExpirationDate)) {
-    std::cout << "Error: Item date format is wrong (expected " << DATE_FORMAT
-              << ")\n";
-    return;
+    throw InvalidValueException("Item date format is wrong (expected " +
+                                std::string{DATE_FORMAT} + ")");
   }
 
   expirationDate = std::move(newExpirationDate);
 }
 
-std::string Grocery::category() const { return "Grocery"; }
+std::string Grocery::category() const noexcept { return "Grocery"; }
 
 void Grocery::display() const {
   std::cout << "[" << category() << "] ID: " << getItemID()
