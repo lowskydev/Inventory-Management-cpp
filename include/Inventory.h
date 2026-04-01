@@ -20,6 +20,8 @@ class Inventory {
   Inventory(Inventory&&) = default;
   Inventory& operator=(Inventory&&) = default;
 
+  [[nodiscard]] const std::vector<std::shared_ptr<Item>>& getItems() const;
+
   void addItem(std::shared_ptr<Item> newItem);
 
   void removeItem(const std::string& itemID);

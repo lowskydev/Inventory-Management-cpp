@@ -7,6 +7,10 @@
 Inventory::Inventory(std::vector<std::shared_ptr<Item>> items)
     : items{std::move(items)} {}
 
+const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const {
+  return items;
+}
+
 void Inventory::addItem(std::shared_ptr<Item> newItem) {
   const auto it = std::ranges::find_if(items, [&newItem](const auto& item) {
     return item->getItemID() == newItem->getItemID();
