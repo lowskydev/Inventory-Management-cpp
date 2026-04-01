@@ -17,10 +17,10 @@ class Item {
   Item(std::string itemID, std::string name, int quantity, double price);
   virtual ~Item() = default;
 
-  [[nodiscard]] std::string getItemID() const;
-  [[nodiscard]] std::string getName() const;
-  [[nodiscard]] int getQuantity() const;
-  [[nodiscard]] double getPrice() const;
+  [[nodiscard]] std::string getItemID() const noexcept;
+  [[nodiscard]] std::string getName() const noexcept;
+  [[nodiscard]] int getQuantity() const noexcept;
+  [[nodiscard]] double getPrice() const noexcept;
 
   void setName(std::string newName);
   void setQuantity(int newQuantity);
