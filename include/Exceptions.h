@@ -8,6 +8,11 @@ class InventoryException : public std::runtime_error {
       : std::runtime_error{message} {}
 };
 
+class EmptyInventoryException : public InventoryException {
+ public:
+  EmptyInventoryException() : InventoryException{"Inventory is empty"} {}
+};
+
 class ItemNotFoundException : public InventoryException {
  private:
   std::string itemID;
