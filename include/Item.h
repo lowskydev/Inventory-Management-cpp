@@ -28,7 +28,7 @@ class Item {
 
   virtual void display() const = 0;
 
-  [[nodiscard]] virtual std::string category() const = 0;
+  [[nodiscard]] virtual std::string category() const noexcept = 0;
 
   [[nodiscard]] virtual std::optional<std::string> findAttribute(
       const std::string& key) const;
