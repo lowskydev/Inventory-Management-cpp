@@ -18,10 +18,11 @@ class Inventory {
   Inventory(const Inventory&) = delete;
   Inventory& operator=(const Inventory&) = delete;
 
-  Inventory(Inventory&&) = default;
-  Inventory& operator=(Inventory&&) = default;
+  Inventory(Inventory&&) noexcept = default;
+  Inventory& operator=(Inventory&&) noexcept = default;
 
-  [[nodiscard]] const std::vector<std::shared_ptr<Item>>& getItems() const;
+  [[nodiscard]] const std::vector<std::shared_ptr<Item>>& getItems()
+      const noexcept;
 
   void addItem(std::shared_ptr<Item> newItem);
 

@@ -4,10 +4,12 @@
 #include <iostream>
 #include <ranges>
 
+#include "Exceptions.h"
+
 Inventory::Inventory(std::vector<std::shared_ptr<Item>> items)
     : items{std::move(items)} {}
 
-const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const {
+const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const noexcept {
   return items;
 }
 
@@ -17,9 +19,7 @@ void Inventory::addItem(std::shared_ptr<Item> newItem) {
   });
 
   if (it != items.end()) {
-    std::cout << "Error: item with itemID of \"" << newItem->getItemID()
-              << "\" already exists\n";
-    return;
+    throw DuplicateItemException(newItem->getItemID());
   }
 
   items.push_back(std::move(newItem));
@@ -31,7 +31,7 @@ void Inventory::removeItem(const std::string& itemID) {
   });
 
   if (removed == 0) {
-    std::cout << "Error: item with ID \"" << itemID << "\" not found\n";
+    throw ItemNotFoundException(itemID);
   }
 }
 
@@ -41,9 +41,7 @@ void Inventory::updateQuantity(const std::string& itemID, int quantity) {
   });
 
   if (it == items.end()) {
-    std::cout << "Error: could not find ID \"" << itemID
-              << "\" in the inventory\n";
-    return;
+    throw ItemNotFoundException(itemID);
   }
 
   (*it)->setQuantity(quantity);
@@ -62,8 +60,7 @@ std::shared_ptr<Item> Inventory::findMostExpensive() const {
       });
 
   if (it == items.end()) {
-    std::cout << "Error: inventory is empty\n";
-    return nullptr;
+    throw InventoryException("Inventory is empty");
   }
 
   return *it;
