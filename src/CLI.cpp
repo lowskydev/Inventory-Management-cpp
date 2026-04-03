@@ -217,4 +217,4 @@ void runCLI(Inventory& inv) {
 
     item.handler(inv);
   }
-};
+}
