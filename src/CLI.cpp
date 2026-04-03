@@ -208,7 +208,7 @@ void runCLI(Inventory& inv) {
       continue;
     }
 
-    const MenuItem& item = menuItems[choice - 1];
+    const MenuItem& item = menuItems[static_cast<size_t>(choice - 1)];
 
     if (!item.handler) {
       std::cout << "Goodbye!\n";
