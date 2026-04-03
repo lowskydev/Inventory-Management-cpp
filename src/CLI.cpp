@@ -26,7 +26,7 @@ static int getInt(const std::string& prompt) {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    std::cout << "Invalid input: please enter whole number";
+    std::cout << "Invalid input: please enter whole number\n";
   }
 }
 
