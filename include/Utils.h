@@ -3,12 +3,31 @@
 #include <algorithm>
 #include <memory>
 #include <ranges>
+#include <sstream>
 #include <vector>
 
+#include "Electronics.h"
+#include "Grocery.h"
 #include "Inventory.h"
 #include "Item.h"
 
 namespace utils {
+
+inline std::shared_ptr<Item> makeElectronics(const std::string& itemID,
+                                             const std::string& name,
+                                             int quantity, double price,
+                                             int warrantyMonths) {
+  return std::make_shared<Electronics>(itemID, name, quantity, price,
+                                       warrantyMonths);
+}
+
+inline std::shared_ptr<Item> makeGrocery(const std::string& itemID,
+                                         const std::string& name, int quantity,
+                                         double price,
+                                         const std::string& expirationDate) {
+  return std::make_shared<Grocery>(itemID, name, quantity, price,
+                                   expirationDate);
+}
 
 template <typename Predicate>
 std::vector<std::shared_ptr<Item>> filterItems(const Inventory& inv,
