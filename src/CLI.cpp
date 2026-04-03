@@ -174,6 +174,7 @@ static void handleBelowThreshold(Inventory& inv) {
 
     if (result.empty()) {
       std::cout << "No items below threshold of " << threshold << '\n';
+      return;
     }
 
     for (const auto& item : result) {
