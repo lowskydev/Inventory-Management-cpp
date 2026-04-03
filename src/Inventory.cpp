@@ -91,7 +91,7 @@ void Inventory::readFromFile(const std::string& filename) {
   std::string line;
   int lineNumber = 0;
   while (std::getline(inFile, line)) {
-    lineNumber += 1;
+    ++lineNumber;
     if (line.empty()) continue;
 
     try {
