@@ -10,6 +10,15 @@ class Item {
   int quantity;
   double price;
 
+  static constexpr int COL_CATEGORY = 14;
+  static constexpr int COL_ID = 5;
+  static constexpr int COL_NAME = 12;
+  static constexpr int COL_QTY = 6;
+  static constexpr int COL_PRICE = 8;
+
+ protected:
+  [[nodiscard]] std::string formatCommonFields() const;
+
  public:
   static constexpr int MIN_QUANTITY = 0;
   static constexpr double MIN_PRICE = 0.0;

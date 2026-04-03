@@ -28,9 +28,7 @@ std::string Electronics::getExtraField() const {
 }
 
 void Electronics::display() const {
-  std::cout << "[" << category() << "] ID: " << getItemID()
-            << " | Name: " << getName() << " | Qty: " << getQuantity()
-            << " | Price: " << getPrice() << " | Warranty: " << warrantyMonths
+  std::cout << formatCommonFields() << " | Warranty: " << warrantyMonths
             << " months\n";
 }
 

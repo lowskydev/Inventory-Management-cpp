@@ -53,10 +53,7 @@ void Grocery::setExpirationDate(std::string newExpirationDate) {
 std::string Grocery::category() const noexcept { return "Grocery"; }
 
 void Grocery::display() const {
-  std::cout << "[" << category() << "] ID: " << getItemID()
-            << " | Name: " << getName() << " | Qty: " << getQuantity()
-            << " | Price: " << getPrice() << " | Expires: " << expirationDate
-            << "\n";
+  std::cout << formatCommonFields() << " | Expires: " << expirationDate << '\n';
 }
 
 std::string Grocery::getExtraField() const { return expirationDate; }
