@@ -10,6 +10,7 @@ add_executable(IMS
         src/Electronics.cpp
         src/Grocery.cpp
         src/Inventory.cpp
+        src/CLI.cpp
 )
 
 target_include_directories(IMS PRIVATE include)
