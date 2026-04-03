@@ -48,7 +48,7 @@ static double getDouble(const std::string& prompt) {
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-    std::cout << "Invalid input: please enter number";
+    std::cout << "Invalid input: please enter number\n";
   }
 }
 
