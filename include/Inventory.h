@@ -9,6 +9,8 @@
 
 class Inventory {
  private:
+  static constexpr char FILE_OUT_DELIMITER = ',';
+
   std::vector<std::shared_ptr<Item>> items;
 
  public:
@@ -36,6 +38,7 @@ class Inventory {
       int threshold) const;
 
   void readFromFile(const std::string& filename);
+  void writeToFile(const std::string& filename) const;
 
   template <typename Key>
   void sortBy(Key keyFn) {
