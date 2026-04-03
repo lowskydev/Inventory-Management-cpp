@@ -35,6 +35,8 @@ class Inventory {
   [[nodiscard]] std::vector<std::shared_ptr<Item>> belowQuantityThreshold(
       int threshold) const;
 
+  void readFromFile(const std::string& filename);
+
   template <typename Key>
   void sortBy(Key keyFn) {
     std::ranges::sort(items, [&keyFn](const auto& item1, const auto& item2) {
