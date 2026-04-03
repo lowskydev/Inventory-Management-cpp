@@ -10,9 +10,9 @@ class Grocery : public Item {
  private:
   std::string expirationDate;
 
+ public:
   static bool isValidDate(const std::string& date);
 
- public:
   static constexpr std::string_view DATE_FORMAT = "YYYY-MM-DD";
 
   Grocery(std::string itemID, std::string name, int quantity, double price,
