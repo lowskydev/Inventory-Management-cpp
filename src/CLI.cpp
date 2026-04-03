@@ -48,6 +48,18 @@ static double getDouble(const std::string& prompt) {
   }
 }
 
+static std::string getDate(const std::string& prompt) {
+  while (true) {
+    std::cout << prompt;
+    std::string value;
+    std::cin >> value;
+
+    if (Grocery::isValidDate(value)) return value;
+
+    std::cout << "Invalid date: expected " << Grocery::DATE_FORMAT << '\n';
+  }
+}
+
 static void handleAddElectronics(Inventory& inv) {
   try {
     const std::string itemID = getString("Item ID: ");
@@ -70,8 +82,8 @@ static void handleAddGrocery(Inventory& inv) {
     const std::string name = getString("Name: ");
     const int quantity = getInt("Quantity: ");
     const double price = getDouble("Price: ");
-    const std::string expirationDate =
-        getString("Expiration date (YYYY-MM-DD): ");
+    const std::string expirationDate = getDate(
+        "Expiration date (" + std::string{Grocery::DATE_FORMAT} + "): ");
 
     inv.addItem(
         utils::makeGrocery(itemID, name, quantity, price, expirationDate));
