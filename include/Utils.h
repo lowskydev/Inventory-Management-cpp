@@ -13,6 +13,19 @@
 
 namespace utils {
 
+inline std::vector<std::string> splitLine(const std::string& line,
+                                          char delimiter) {
+  std::vector<std::string> tokens;
+  std::string token;
+  std::istringstream stream{line};
+
+  while (std::getline(stream, token, delimiter)) {
+    tokens.push_back(token);
+  }
+
+  return tokens;
+}
+
 inline std::shared_ptr<Item> makeElectronics(const std::string& itemID,
                                              const std::string& name,
                                              int quantity, double price,
