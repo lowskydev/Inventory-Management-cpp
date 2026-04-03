@@ -15,9 +15,13 @@ struct MenuItem {
 
 static std::string getString(const std::string& prompt) {
   std::cout << prompt;
-
   std::string value;
-  std::cin >> value;
+
+  if (std::cin.peek() == '\n') {
+    std::cin.ignore();
+  }
+
+  std::getline(std::cin, value);
   return value;
 }
 
