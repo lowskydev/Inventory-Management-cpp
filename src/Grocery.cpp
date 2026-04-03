@@ -59,6 +59,8 @@ void Grocery::display() const {
             << "\n";
 }
 
+std::string Grocery::getExtraField() const { return expirationDate; }
+
 std::optional<std::string> Grocery::findAttribute(
     const std::string& key) const {
   if (key == "expiration") {
