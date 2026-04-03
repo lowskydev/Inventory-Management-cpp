@@ -177,7 +177,7 @@ static void printMenu(const std::vector<MenuItem>& menuItems) {
   std::cout << "\n=== Inventory System ===\n";
 
   for (size_t i = 0; i < menuItems.size(); i++) {
-    std::cout << i << ". " << menuItems[i].label << '\n';
+    std::cout << i + 1 << ". " << menuItems[i].label << '\n';
   }
 
   std::cout << "========================\n";
