@@ -8,6 +8,11 @@
 #include "Exceptions.h"
 #include "Utils.h"
 
+struct MenuItem {
+  std::string label;
+  std::function<void(Inventory&)> handler;
+};
+
 static std::string getString(const std::string& prompt) {
   std::cout << prompt;
 
@@ -167,11 +172,6 @@ static void handleSortByPrice(Inventory& inv) {
   utils::sortItems(inv, [](const auto& item) { return item->getPrice(); });
   inv.displayInventory();
 }
-
-struct MenuItem {
-  std::string label;
-  std::function<void(Inventory&)> handler;
-};
 
 static void printMenu(const std::vector<MenuItem>& menuItems) {
   std::cout << "\n=== Inventory System ===\n";
