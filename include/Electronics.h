@@ -23,6 +23,8 @@ class Electronics : public Item {
 
   [[nodiscard]] std::string category() const noexcept override;
 
+  [[nodiscard]] std::string getExtraField() const override;
+
   [[nodiscard]] std::optional<std::string> findAttribute(
       const std::string& key) const override;
 };

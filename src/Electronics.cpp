@@ -23,6 +23,10 @@ void Electronics::setWarrantyMonths(int newWarrantyMonths) {
 
 std::string Electronics::category() const noexcept { return "Electronics"; }
 
+std::string Electronics::getExtraField() const {
+  return std::to_string(warrantyMonths);
+}
+
 void Electronics::display() const {
   std::cout << "[" << category() << "] ID: " << getItemID()
             << " | Name: " << getName() << " | Qty: " << getQuantity()
