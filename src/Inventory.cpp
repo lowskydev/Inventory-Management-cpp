@@ -126,3 +126,21 @@ void Inventory::readFromFile(const std::string& filename) {
     }
   }
 }
+
+void Inventory::writeToFile(const std::string& filename) const {
+  std::ofstream outFile{filename};
+
+  if (!outFile.is_open()) {
+    throw InventoryException("Cannot open file \"" + filename +
+                             "\" for writing");
+  }
+
+  outFile << std::fixed << std::setprecision(2);
+
+  for (const auto& item : items) {
+    outFile << item->getItemID() << FILE_OUT_DELIMITER << item->category()
+            << FILE_OUT_DELIMITER << item->getName() << FILE_OUT_DELIMITER
+            << item->getQuantity() << FILE_OUT_DELIMITER << item->getPrice()
+            << FILE_OUT_DELIMITER << item->getExtraField() << '\n';
+  }
+}
