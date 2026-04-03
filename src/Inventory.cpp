@@ -84,7 +84,8 @@ void Inventory::readFromFile(const std::string& filename) {
   std::ifstream inFile{filename};
 
   if (!inFile.is_open()) {
-    throw InventoryException("Cannot open file for reading");
+    throw InventoryException("Cannot open file \"" + filename +
+                             "\" for reading");
   }
 
   std::string line;
