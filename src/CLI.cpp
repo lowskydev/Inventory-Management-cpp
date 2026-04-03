@@ -101,7 +101,7 @@ static void handleUpdateQuantity(Inventory& inv) {
   }
 }
 
-static void handleDisplayInventory(const Inventory& inv) {
+static void handleDisplayInventory(Inventory& inv) {
   if (inv.getItems().empty()) {
     std::cout << "Inventory is empty\n";
     return;
@@ -122,7 +122,7 @@ static void handleReadFromFile(Inventory& inv) {
   }
 }
 
-static void handleWriteToFile(const Inventory& inv) {
+static void handleWriteToFile(Inventory& inv) {
   try {
     const std::string filename = getString("Filename: ");
 
@@ -143,7 +143,7 @@ static void handleFindMostExpensive(Inventory& inv) {
   }
 }
 
-static void handleBelowThreshold(const Inventory& inv) {
+static void handleBelowThreshold(Inventory& inv) {
   try {
     const int threshold = getInt("Threshold: ");
 
