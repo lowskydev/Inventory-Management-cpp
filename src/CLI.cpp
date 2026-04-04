@@ -22,15 +22,26 @@ struct ItemFields {
 };
 
 static std::string getString(const std::string& prompt) {
-  std::cout << prompt;
-  std::string value;
+  while (true) {
+    std::cout << prompt;
+    std::string value;
 
-  if (std::cin.peek() == '\n') {
-    std::cin.ignore();
+    if (std::cin.peek() == '\n') {
+      std::cin.ignore();
+    }
+
+    std::getline(std::cin, value);
+
+    const auto start = value.find_first_not_of(" \t");
+    const auto end = value.find_last_not_of(" \t");
+
+    if (start == std::string::npos) {
+      std::cout << "Invalid input: cannot be empty\n";
+      continue;
+    }
+
+    return value.substr(start, end - start + 1);
   }
-
-  std::getline(std::cin, value);
-  return value;
 }
 
 static int getInt(const std::string& prompt) {
