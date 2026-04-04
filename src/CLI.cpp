@@ -39,6 +39,14 @@ static int getInt(const std::string& prompt) {
   }
 }
 
+static int getPositiveInt(const std::string& prompt) {
+  while (true) {
+    const int value = getInt(prompt);
+    if (value >= 0) return value;
+    std::cout << "Invalid input: please enter positive whole number\n";
+  }
+}
+
 static double getDouble(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
@@ -49,6 +57,14 @@ static double getDouble(const std::string& prompt) {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Invalid input: please enter number\n";
+  }
+}
+
+static double getPositiveDouble(const std::string& prompt) {
+  while (true) {
+    const double value = getPositiveDouble(prompt);
+    if (value >= 0) return value;
+    std::cout << "Invalid input: please enter positive number\n";
   }
 }
 
@@ -68,9 +84,9 @@ static void handleAddElectronics(Inventory& inv) {
   try {
     const std::string itemID = getString("Item ID: ");
     const std::string name = getString("Name: ");
-    const int quantity = getInt("Quantity: ");
-    const double price = getDouble("Price: ");
-    const int warrantyMonths = getInt("Warranty (months): ");
+    const int quantity = getPositiveInt("Quantity: ");
+    const double price = getPositiveDouble("Price: ");
+    const int warrantyMonths = getPositiveInt("Warranty (months): ");
     inv.addItem(
         utils::makeElectronics(itemID, name, quantity, price, warrantyMonths));
 
@@ -112,7 +128,7 @@ static void handleRemoveItem(Inventory& inv) {
 static void handleUpdateQuantity(Inventory& inv) {
   try {
     const std::string itemID = getString("Item ID: ");
-    const int quantity = getInt("Quantity: ");
+    const int quantity = getPositiveInt("Quantity: ");
 
     inv.updateQuantity(itemID, quantity);
 
@@ -166,7 +182,7 @@ static void handleFindMostExpensive(Inventory& inv) {
 
 static void handleBelowThreshold(Inventory& inv) {
   try {
-    const int threshold = getInt("Threshold: ");
+    const int threshold = getPositiveInt("Threshold: ");
 
     const auto result = utils::filterItems(inv, [threshold](const auto& item) {
       return item->getQuantity() < threshold;
