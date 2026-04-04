@@ -27,6 +27,8 @@ target_compile_options(IMS PRIVATE
 
 # -- Google Test -------------------------------------------
 
+include(FetchContent)
+
 FetchContent_Declare(
         googletest
         GIT_REPOSITORY https://github.com/google/googletest.git
