@@ -69,7 +69,7 @@ static double getDouble(const std::string& prompt) {
 
 static double getPositiveDouble(const std::string& prompt) {
   while (true) {
-    const double value = getPositiveDouble(prompt);
+    const double value = getDouble(prompt);
     if (value >= 0) return value;
     std::cout << "Invalid input: please enter positive number\n";
   }
