@@ -22,6 +22,14 @@ TEST_F(ItemTest, ConstructorRejectsNegativePrice) {
                InvalidValueException);
 }
 
+TEST_F(ItemTest, ConstructorAcceptsZeroQuantity) {
+  EXPECT_NO_THROW(Electronics("E2", "Laptop", 0, 699.99, 24));
+}
+
+TEST_F(ItemTest, ConstructorAcceptsZeroPrice) {
+  EXPECT_NO_THROW(Electronics("E2", "Laptop", 10, 0.0, 24));
+}
+
 TEST_F(ItemTest, ConstructorAcceptsPositiveQuantity) {
   EXPECT_NO_THROW(Electronics("E2", "Laptop", 10, 699.99, 24));
 }
@@ -45,6 +53,11 @@ TEST_F(ItemTest, SetQuantityRejectsNegative) {
   EXPECT_THROW(item.setQuantity(-10), InvalidValueException);
 }
 
+TEST_F(ItemTest, SetQuantityAcceptsZero) {
+  EXPECT_NO_THROW(item.setQuantity(0));
+  EXPECT_EQ(item.getQuantity(), 0);
+}
+
 TEST_F(ItemTest, SetQuantityAcceptsPositive) {
   EXPECT_NO_THROW(item.setQuantity(100));
   EXPECT_EQ(item.getQuantity(), 100);
@@ -54,6 +67,11 @@ TEST_F(ItemTest, SetQuantityAcceptsPositive) {
 
 TEST_F(ItemTest, SetPriceRejectsNegative) {
   EXPECT_THROW(item.setPrice(-10), InvalidValueException);
+}
+
+TEST_F(ItemTest, SetPriceAcceptsZero) {
+  EXPECT_NO_THROW(item.setPrice(0));
+  EXPECT_DOUBLE_EQ(item.getPrice(), 0);
 }
 
 TEST_F(ItemTest, SetPriceAcceptsPositive) {
