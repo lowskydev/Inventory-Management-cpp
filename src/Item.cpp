@@ -8,8 +8,11 @@
 Item::Item(std::string itemID, std::string name, int quantity, double price)
     : itemID{std::move(itemID)},
       name{std::move(name)},
-      quantity{quantity},
-      price{price} {}
+      quantity{0},
+      price{0.0} {
+  setQuantity(quantity);
+  setPrice(price);
+}
 
 const std::string& Item::getItemID() const noexcept { return itemID; }
 const std::string& Item::getName() const noexcept { return name; }
