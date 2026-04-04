@@ -3,6 +3,8 @@
 #include "Electronics.h"
 #include "Exceptions.h"
 
+// Electronics is used to test abstract Item class.
+// All methods under test here are defined in Item and inherited unchanged
 class ItemTest : public testing::Test {
  protected:
   Electronics item{"E1", "Phone", 10, 699.99, 24};
