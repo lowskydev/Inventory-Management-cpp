@@ -42,8 +42,3 @@
 
 # Clion files
 .idea/
-
-# Tests files
-tests/
-test_*
-*_test
