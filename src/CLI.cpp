@@ -13,6 +13,13 @@ struct MenuItem {
   std::function<void(Inventory&)> handler;
 };
 
+struct ItemFields {
+  std::string itemID;
+  std::string name;
+  int quantity;
+  double price;
+};
+
 static std::string getString(const std::string& prompt) {
   std::cout << prompt;
   std::string value;
@@ -80,12 +87,18 @@ static std::string getDate(const std::string& prompt) {
   }
 }
 
+static ItemFields getCommonItems() {
+  return {
+      getString("Item ID: "),
+      getString("Name: "),
+      getPositiveInt("Quantity: "),
+      getPositiveDouble("Price: "),
+  };
+}
+
 static void handleAddElectronics(Inventory& inv) {
   try {
-    const std::string itemID = getString("Item ID: ");
-    const std::string name = getString("Name: ");
-    const int quantity = getPositiveInt("Quantity: ");
-    const double price = getPositiveDouble("Price: ");
+    const auto [itemID, name, quantity, price] = getCommonItems();
     const int warrantyMonths = getPositiveInt("Warranty (months): ");
     inv.addItem(
         utils::makeElectronics(itemID, name, quantity, price, warrantyMonths));
@@ -98,10 +111,7 @@ static void handleAddElectronics(Inventory& inv) {
 
 static void handleAddGrocery(Inventory& inv) {
   try {
-    const std::string itemID = getString("Item ID: ");
-    const std::string name = getString("Name: ");
-    const int quantity = getInt("Quantity: ");
-    const double price = getDouble("Price: ");
+    const auto [itemID, name, quantity, price] = getCommonItems();
     const std::string expirationDate = getDate(
         "Expiration date (" + std::string{Grocery::DATE_FORMAT} + "): ");
 
