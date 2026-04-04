@@ -35,14 +35,19 @@ static std::string getString(const std::string& prompt) {
 static int getInt(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
+    std::string input;
+    std::cin >> input;
 
-    int value;
-    if (std::cin >> value) return value;
+    const bool isWholeNumber = std::ranges::all_of(
+        input, [](const char character) { return std::isdigit(character); });
 
-    std::cin.clear();
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    if (input.empty() || !isWholeNumber) {
+      std::cout << "Invalid input: please enter whole number\n";
+      continue;
+      ;
+    }
 
-    std::cout << "Invalid input: please enter whole number\n";
+    return std::stoi(input);
   }
 }
 
