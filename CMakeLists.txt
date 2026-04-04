@@ -45,6 +45,7 @@ add_executable(IMS_tests
         src/Inventory.cpp
         tests/test_item.cpp
         tests/test_inventory.cpp
+        tests/test_electronics.cpp
         tests/test_grocery.cpp
         tests/test_file_io.cpp
 )
