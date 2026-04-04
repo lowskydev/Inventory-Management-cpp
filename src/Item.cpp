@@ -10,6 +10,8 @@ Item::Item(std::string itemID, std::string name, int quantity, double price)
       name{std::move(name)},
       quantity{0},
       price{0.0} {
+  // Validation runs through setters rather than directly in the initializer
+  // list so the rules applies when constructing
   setQuantity(quantity);
   setPrice(price);
 }

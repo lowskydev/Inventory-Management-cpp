@@ -9,11 +9,15 @@
 #include "Exceptions.h"
 #include "Utils.h"
 
+// -- Data Structures ----------------------------------------------------------
+
 struct MenuItem {
   std::string label;
   std::function<void(Inventory&)> handler;
 };
 
+// Groups the four fields shared by Item.
+// Used by getCommonItems
 struct ItemFields {
   std::string itemID;
   std::string name;
@@ -21,17 +25,25 @@ struct ItemFields {
   double price;
 };
 
+// -- Input Helpers ----------------------------------------------------------
+
+// Reads non-empty string from stdin.
+// Trims leading and trailing whitespace.
+// Re-prompts if the input is blank or whitespace only
 static std::string getString(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
     std::string value;
 
+    // cin >> used by getInt/getDouble leaves '\n' in the buffer.
+    // this removes it
     if (std::cin.peek() == '\n') {
       std::cin.ignore();
     }
 
     std::getline(std::cin, value);
 
+    // find the first and last non-whitespace characters
     const auto start = value.find_first_not_of(" \t");
     const auto end = value.find_last_not_of(" \t");
 
@@ -40,16 +52,21 @@ static std::string getString(const std::string& prompt) {
       continue;
     }
 
+    // return the trimmed substring
     return value.substr(start, end - start + 1);
   }
 }
 
+// Reads whole number from stdin.
+// Rejects floats, letters, and symbols by checking each character.
+// Re-prompts on invalid input
 static int getInt(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
     std::string input;
     std::cin >> input;
 
+    // reject anything that isn't purely digits
     const bool isWholeNumber = std::ranges::all_of(
         input, [](const char character) { return std::isdigit(character); });
 
@@ -63,6 +80,8 @@ static int getInt(const std::string& prompt) {
   }
 }
 
+// Reads non-negative whole number from stdin.
+// Re-prompts if the value is negative
 static int getPositiveInt(const std::string& prompt) {
   while (true) {
     const int value = getInt(prompt);
@@ -71,19 +90,24 @@ static int getPositiveInt(const std::string& prompt) {
   }
 }
 
+// Reads a decimal number from stdin.
+// Re-prompts on invalid input
 static double getDouble(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
 
     double value;
     if (std::cin >> value) return value;
+
+    // clear the error flag and discard the bad input
     std::cin.clear();
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     std::cout << "Invalid input: please enter number\n";
   }
 }
-
+// Reads positive decimal number from stdin.
+// Re-prompts on invalid input
 static double getPositiveDouble(const std::string& prompt) {
   while (true) {
     const double value = getDouble(prompt);
@@ -92,6 +116,9 @@ static double getPositiveDouble(const std::string& prompt) {
   }
 }
 
+// Reads a date string from stdin
+// Validates YYYY-MM-DD format by Grocery::isValidDate.
+// Re-prompting until the input matches
 static std::string getDate(const std::string& prompt) {
   while (true) {
     std::cout << prompt;
@@ -104,6 +131,8 @@ static std::string getDate(const std::string& prompt) {
   }
 }
 
+// Prompts for the four fields common to all item types.
+// Used by handleAdd[Derived Item Class] to avoid repetition
 static ItemFields getCommonItems() {
   return {
       getString("Item ID: "),
@@ -112,6 +141,8 @@ static ItemFields getCommonItems() {
       getPositiveDouble("Price: "),
   };
 }
+
+// -- Menu Handlers ----------------------------------------------------------
 
 static void handleAddElectronics(Inventory& inv) {
   try {
@@ -233,6 +264,8 @@ static void handleSortByPrice(Inventory& inv) {
   inv.displayInventory();
 }
 
+// -- Menu Display ----------------------------------------------------------
+
 static void printMenu(const std::vector<MenuItem>& menuItems) {
   std::cout << "\n=== Inventory System ===\n";
 
@@ -244,7 +277,11 @@ static void printMenu(const std::vector<MenuItem>& menuItems) {
   std::cout << "========================\n";
 }
 
+// -- Entry Point  ----------------------------------------------------------
+
 void runCLI(Inventory& inv) {
+  // menu items are stored in a vector.
+  // their position determines the number shown to the user
   const std::vector<MenuItem> menuItems{
       {"Add Electronics", handleAddElectronics},
       {"Add Grocery", handleAddGrocery},
@@ -271,6 +308,7 @@ void runCLI(Inventory& inv) {
 
     const MenuItem& item = menuItems[static_cast<size_t>(choice - 1)];
 
+    // nullptr handler signals the Exit option
     if (!item.handler) {
       std::cout << "Goodbye!\n";
       break;

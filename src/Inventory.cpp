@@ -28,6 +28,7 @@ void Inventory::addItem(std::shared_ptr<Item> newItem) {
 }
 
 void Inventory::removeItem(const std::string& itemID) {
+  // erase_if returns number of elements removed
   const auto removed = std::erase_if(items, [&itemID](const auto& item) {
     return item->getItemID() == itemID;
   });
@@ -46,6 +47,7 @@ void Inventory::updateQuantity(const std::string& itemID, int quantity) {
     throw ItemNotFoundException(itemID);
   }
 
+  // setQuantity handles negative value validation
   (*it)->setQuantity(quantity);
 }
 
@@ -97,6 +99,7 @@ void Inventory::readFromFile(const std::string& filename) {
     try {
       std::vector<std::string> fields = utils::splitLine(line, ',');
 
+      // each line must have exactly 6 delimiter separated fields
       if (fields.size() != 6) {
         throw InventoryException("Invalid line " + std::to_string(lineNumber) +
                                  ": " + line);
@@ -119,7 +122,8 @@ void Inventory::readFromFile(const std::string& filename) {
       }
 
     } catch (const InventoryException&) {
-      throw;  // rethrow as-is — already correct type
+      // rethrow inventory errors - they already have clear messages
+      throw;
     } catch (const std::exception& e) {
       throw InventoryException{"Failed to parse line " +
                                std::to_string(lineNumber) + ": " + e.what()};
@@ -135,9 +139,11 @@ void Inventory::writeToFile(const std::string& filename) const {
                              "\" for writing");
   }
 
+  // fix decimal places so prices round correctly in CSV
   outFile << std::fixed << std::setprecision(2);
 
   for (const auto& item : items) {
+    // format: itemID,category,name,quantity,price,extra
     outFile << item->getItemID() << FILE_OUT_DELIMITER << item->category()
             << FILE_OUT_DELIMITER << item->getName() << FILE_OUT_DELIMITER
             << item->getQuantity() << FILE_OUT_DELIMITER << item->getPrice()

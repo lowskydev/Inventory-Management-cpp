@@ -9,9 +9,12 @@ Grocery::Grocery(std::string itemID, std::string name, int quantity,
                  double price, std::string expirationDate)
     : Item{std::move(itemID), std::move(name), quantity, price},
       expirationDate{""} {
+  // set via setter so validation runs at construction
+  // time with the same rules as updates
   setExpirationDate(std::move(expirationDate));
 }
 
+// Structure must be exactly as defined in DATE_FORMAT (eg "YYYY-MM-DD")
 bool Grocery::isValidDate(const std::string& date) {
   // check length
   if (date.length() != 10) return false;
@@ -19,17 +22,17 @@ bool Grocery::isValidDate(const std::string& date) {
   // check dashes
   if (date[4] != '-' || date[7] != '-') return false;
 
-  // check if chars are digits
+  // every character except the dashes must be a digit
   for (size_t i = 0; i < 10; i++) {
     if (i == 4 || i == 7) continue;
     if (!std::isdigit(date[i])) return false;
   }
 
-  // check ranges
   const int year = std::stoi(date.substr(0, 4));
   const int month = std::stoi(date.substr(5, 2));
   const int day = std::stoi(date.substr(8, 2));
 
+  // check ranges
   if (year < 1900 || year > 9999) return false;
   if (month < 1 || month > 12) return false;
   if (day < 1 || day > 31) return false;
