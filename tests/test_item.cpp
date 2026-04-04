@@ -36,7 +36,7 @@ TEST_F(ItemTest, GettersReturnCorrectValuesAfterConstruction) {
   EXPECT_EQ(item.getItemID(), "E1");
   EXPECT_EQ(item.getName(), "Phone");
   EXPECT_EQ(item.getQuantity(), 10);
-  EXPECT_EQ(item.getPrice(), 699.99);
+  EXPECT_DOUBLE_EQ(item.getPrice(), 699.99);
 }
 
 // -- setQuantity --------------------------------------------------------------
@@ -58,7 +58,7 @@ TEST_F(ItemTest, SetPriceRejectsNegative) {
 
 TEST_F(ItemTest, SetPriceAcceptsPositive) {
   EXPECT_NO_THROW(item.setPrice(999.99));
-  EXPECT_EQ(item.getPrice(), 999.99);
+  EXPECT_DOUBLE_EQ(item.getPrice(), 999.99);
 }
 
 // -- setName ------------------------------------------------------------------
