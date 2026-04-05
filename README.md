@@ -8,16 +8,12 @@
 &nbsp;&nbsp;
 [![CI](https://img.shields.io/badge/CI-2D2D2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/USERNAME/REPO/actions)
 
-</div>
-
 # Inventory Management System
 
-
-
-
-
-
 A command-line inventory management system written in modern C++23.
+
+</div>
+
 
 ## Features
 
