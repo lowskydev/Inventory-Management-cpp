@@ -28,7 +28,8 @@ class Item {
   static constexpr int MIN_QUANTITY = 0;
   static constexpr double MIN_PRICE = 0.0;
 
-  Item(std::string itemID, std::string name, int quantity, double price);
+  Item(std::string itemID, std::string newName, int newQuantity,
+       double newPrice);
   virtual ~Item() = default;
 
   // -- Getters ----------------------------------------------------------------

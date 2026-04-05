@@ -5,15 +5,16 @@
 
 #include "Exceptions.h"
 
-Item::Item(std::string itemID, std::string name, int quantity, double price)
-    : itemID{std::move(itemID)},
-      name{std::move(name)},
+Item::Item(std::string newItemID, std::string newName, int newQuantity,
+           double newPrice)
+    : itemID{std::move(newItemID)},
+      name{std::move(newName)},
       quantity{0},
       price{0.0} {
   // Validation runs through setters rather than directly in the initializer
   // list so the rules applies when constructing
-  setQuantity(quantity);
-  setPrice(price);
+  setQuantity(newQuantity);
+  setPrice(newPrice);
 }
 
 const std::string& Item::getItemID() const noexcept { return itemID; }

@@ -2,14 +2,15 @@
 
 #include <algorithm>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <ranges>
 
 #include "Exceptions.h"
 #include "Utils.h"
 
-Inventory::Inventory(std::vector<std::shared_ptr<Item>> items)
-    : items{std::move(items)} {}
+Inventory::Inventory(std::vector<std::shared_ptr<Item>> newItems)
+    : items{std::move(newItems)} {}
 
 const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const noexcept {
   return items;

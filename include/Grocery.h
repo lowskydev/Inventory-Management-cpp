@@ -21,7 +21,7 @@ class Grocery : public Item {
 
   // Throws InvalidValueException if date fails format validation
   Grocery(std::string itemID, std::string name, int quantity, double price,
-          std::string expirationDate);
+          std::string newExpirationDate);
   ~Grocery() override = default;
 
   // -- Getters ----------------------------------------------------------------
