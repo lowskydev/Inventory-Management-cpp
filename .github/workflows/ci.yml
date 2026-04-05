@@ -1,0 +1,39 @@
+name: CI
+
+# run on every push to main and dev
+# and on every pull request targeting those branches
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main, dev ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # check out your repository code
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      # install cmake and gcc-13 which supports C++23
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake gcc-13 g++-13
+
+      # configure - cmake download Google Test
+      - name: Configure
+        run: |
+          cmake -B build \
+            -DCMAKE_CXX_COMPILER=g++-13 \
+            -DCMAKE_BUILD_TYPE=Release
+
+      # compile everything
+      - name: Build
+        run: cmake --build build --parallel
+
+      # run all tests
+      - name: Run tests
+        run: ./build/IMS_tests
