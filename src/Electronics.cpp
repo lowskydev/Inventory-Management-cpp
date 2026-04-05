@@ -4,13 +4,14 @@
 
 #include "Exceptions.h"
 
-Electronics::Electronics(std::string itemID, std::string name, int quantity,
-                         double price, int warrantyMonths)
-    : Item{std::move(itemID), std::move(name), quantity, price},
+Electronics::Electronics(std::string newItemID, std::string newName,
+                         int newQuantity, double newPrice,
+                         int newWarrantyMonths)
+    : Item{std::move(newItemID), std::move(newName), newQuantity, newPrice},
       warrantyMonths{0} {
   // set via setter so validation runs at construction
   // time with the same rules as updates
-  setWarrantyMonths(warrantyMonths);
+  setWarrantyMonths(newWarrantyMonths);
 }
 
 int Electronics::getWarrantyMonths() const noexcept { return warrantyMonths; }

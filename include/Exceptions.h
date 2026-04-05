@@ -23,9 +23,9 @@ class ItemNotFoundException : public InventoryException {
   std::string itemID;
 
  public:
-  explicit ItemNotFoundException(const std::string& itemID)
-      : InventoryException{"Item with ID \"" + itemID + "\" not found"},
-        itemID{itemID} {}
+  explicit ItemNotFoundException(const std::string& id)
+      : InventoryException{"Item with ID \"" + id + "\" not found"},
+        itemID{id} {}
 
   [[nodiscard]] const std::string& getItemID() const { return itemID; }
 };
@@ -37,9 +37,9 @@ class DuplicateItemException : public InventoryException {
   std::string itemID;
 
  public:
-  explicit DuplicateItemException(const std::string& itemID)
-      : InventoryException{"Item with ID \"" + itemID + "\" already exists"},
-        itemID{itemID} {}
+  explicit DuplicateItemException(const std::string& id)
+      : InventoryException{"Item with ID \"" + id + "\" already exists"},
+        itemID{id} {}
 
   [[nodiscard]] const std::string& getItemID() const { return itemID; }
 };

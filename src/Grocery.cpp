@@ -5,13 +5,13 @@
 
 #include "Exceptions.h"
 
-Grocery::Grocery(std::string itemID, std::string name, int quantity,
-                 double price, std::string expirationDate)
-    : Item{std::move(itemID), std::move(name), quantity, price},
+Grocery::Grocery(std::string newItemID, std::string newName, int newQuantity,
+                 double newPrice, std::string newExpirationDate)
+    : Item{std::move(newItemID), std::move(newName), newQuantity, newPrice},
       expirationDate{""} {
   // set via setter so validation runs at construction
   // time with the same rules as updates
-  setExpirationDate(std::move(expirationDate));
+  setExpirationDate(std::move(newExpirationDate));
 }
 
 // Structure must be exactly as defined in DATE_FORMAT (eg "YYYY-MM-DD")

@@ -13,7 +13,7 @@ A command-line inventory management system written in modern C++23.
 
 ## Build
 
-Requires CMake 4.1+ and a C++23 compatible compiler (GCC 13+ or Clang 16+).
+Requires CMake 3.20+ and a C++23 compatible compiler (GCC 13+ or Clang 16+).
 
 ```bash
 cmake -B build
@@ -25,6 +25,31 @@ cmake --build build
 ```bash
 ./build/IMS
 ```
+
+## Tests
+
+Unit tests are written with [Google Test](https://github.com/google/googletest).
+Google Test is downloaded automatically by CMake - no manual installation needed.
+
+```bash
+cmake -B build
+cmake --build build
+./build/IMS_tests
+```
+
+Or via CTest:
+
+```bash
+cd build && ctest --output-on-failure
+```
+
+### What is tested
+
+- `Item` - setter validation, constructor validation, getters
+- `Electronics` - warranty validation, category, findAttribute
+- `Grocery` - date format validation, constructor, findAttribute
+- `Inventory` - add, remove, update, find, filter, move semantics
+- `FileIO` - write, read, read-write cycle, edge cases
 
 ## CSV Format
 
@@ -49,10 +74,18 @@ G2,Grocery,Milk,30,1.49,2026-04-10
 ## Project Structure
 
 ```
-include/       — header files
-src/           — implementation files
-inventory.csv  — sample inventory file
+include/           - header files
+src/               - implementation files
+tests/             - Google Test unit tests
+.github/workflows/ - CI pipeline
+inventory.csv      - sample inventory file
 ```
+
+## CI
+
+Every push to `main` or `dev` and every pull request automatically triggers
+a build and test run on Ubuntu via GitHub Actions. The pipeline compiles the
+project with GCC 13 and runs the full test suite.
 
 ## Design Decisions
 
