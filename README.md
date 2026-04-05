@@ -1,6 +1,19 @@
+<div align="center">
+
+[![C++23](https://img.shields.io/badge/C%2B%2B-23-4FC3F7?style=for-the-badge&labelColor=2D2D2D&logo=cplusplus&logoColor=4FC3F7)](https://en.cppreference.com)
+&nbsp;&nbsp;
+[![CMake](https://img.shields.io/badge/CMake-4.1-FF6B6B?style=for-the-badge&labelColor=2D2D2D&logo=cmake&logoColor=white)](https://cmake.org)
+&nbsp;&nbsp;
+[![Google Test](https://img.shields.io/badge/Google_Test-1.17-F9AB00?style=for-the-badge&labelColor=2D2D2D&logo=google&logoColor=white)](https://github.com/google/googletest)
+&nbsp;&nbsp;
+[![CI](https://img.shields.io/badge/CI-2D2D2D?style=for-the-badge&logo=github&logoColor=white)](https://github.com/USERNAME/REPO/actions)
+
 # Inventory Management System
 
 A command-line inventory management system written in modern C++23.
+
+</div>
+
 
 ## Features
 
