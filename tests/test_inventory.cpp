@@ -105,11 +105,6 @@ TEST_F(InventoryTest, DisplayInventoryDoesNotThrow) {
   EXPECT_NO_THROW(inv.displayInventory());
 }
 
-TEST_F(InventoryTest, DisplayInventoryThrowOnEmptyInventory) {
-  Inventory emptyInv;
-  EXPECT_THROW(emptyInv.displayInventory(), EmptyInventoryException);
-}
-
 // -- findMostExpensive --------------------------------------------------------
 
 TEST_F(InventoryTest, FindMostExpensiveReturnsCorrectItem) {
@@ -148,11 +143,6 @@ TEST_F(InventoryTest, BelowQuantityThresholdReturnsAllWhenAllQualify) {
 
 TEST_F(InventoryTest, GetItemsReturnCorrectSize) {
   EXPECT_EQ(inv.getItems().size(), 4);
-}
-
-TEST_F(InventoryTest, GetItemsThrowsOnEmptyInventory) {
-  Inventory emptyInv;
-  EXPECT_THROW(emptyInv.getItems(), EmptyInventoryException);
 }
 
 // -- moveSemantics ------------------------------------------------------------

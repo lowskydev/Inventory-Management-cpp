@@ -11,9 +11,7 @@
 Inventory::Inventory(std::vector<std::shared_ptr<Item>> items)
     : items{std::move(items)} {}
 
-const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const {
-  if (items.size() == 0) throw EmptyInventoryException();
-
+const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const noexcept {
   return items;
 }
 
@@ -54,8 +52,6 @@ void Inventory::updateQuantity(const std::string& itemID, int quantity) {
 }
 
 void Inventory::displayInventory() const {
-  if (items.empty()) throw EmptyInventoryException();
-
   for (const auto& item : items) {
     item->display();
   }
