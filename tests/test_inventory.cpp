@@ -117,7 +117,7 @@ TEST_F(InventoryTest, FindMostExpensiveReturnsCorrectItem) {
 
 TEST_F(InventoryTest, FindMostExpensiveThrowsOnEmptyInventory) {
   Inventory emptyInv;
-  EXPECT_THROW(emptyInv.findMostExpensive(), EmptyInventoryException);
+  EXPECT_THROW((void)emptyInv.findMostExpensive(), EmptyInventoryException);
 }
 
 // -- belowQuantityThreshold ---------------------------------------------------
