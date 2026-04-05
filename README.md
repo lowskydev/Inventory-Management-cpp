@@ -13,7 +13,7 @@ A command-line inventory management system written in modern C++23.
 
 ## Build
 
-Requires CMake 4.1+ and a C++23 compatible compiler (GCC 13+ or Clang 16+).
+Requires CMake 3.20+ and a C++23 compatible compiler (GCC 13+ or Clang 16+).
 
 ```bash
 cmake -B build
