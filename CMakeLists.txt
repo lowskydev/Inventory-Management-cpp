@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # -- Main Executable ----------------------------------------
+
 add_executable(IMS
         src/main.cpp
         src/Item.cpp
@@ -26,6 +27,8 @@ target_compile_options(IMS PRIVATE
 )
 
 # -- Google Test -------------------------------------------
+
+enable_testing()
 
 include(FetchContent)
 
