@@ -15,7 +15,7 @@ jobs:
     steps:
       # check out your repository code
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # install cmake and gcc-13 which supports C++23
       - name: Install dependencies
