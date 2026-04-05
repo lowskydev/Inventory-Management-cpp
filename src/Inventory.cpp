@@ -52,6 +52,8 @@ void Inventory::updateQuantity(const std::string& itemID, int quantity) {
 }
 
 void Inventory::displayInventory() const {
+  if (items.empty()) throw EmptyInventoryException();
+
   for (const auto& item : items) {
     item->display();
   }
