@@ -11,7 +11,9 @@
 Inventory::Inventory(std::vector<std::shared_ptr<Item>> items)
     : items{std::move(items)} {}
 
-const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const noexcept {
+const std::vector<std::shared_ptr<Item>>& Inventory::getItems() const {
+  if (items.size() == 0) throw EmptyInventoryException();
+
   return items;
 }
 

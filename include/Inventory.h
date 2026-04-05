@@ -57,8 +57,7 @@ class Inventory {
 
   // Returns a const reference to the internal item list.
   // Used by functions in Utils.h
-  [[nodiscard]] const std::vector<std::shared_ptr<Item>>& getItems()
-      const noexcept;
+  [[nodiscard]] const std::vector<std::shared_ptr<Item>>& getItems() const;
 
   // -- File I/O ---------------------------------------------------------------
 
